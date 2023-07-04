@@ -2,6 +2,7 @@ package com.nttdata.mstransaccions.dto;
 
 
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,5 @@ public class TransactionDto {
     private Double amount;
     private String transactionType; // This can be "Deposit", "Withdrawal", "Payment", "Charge"
     private LocalDateTime transactionDate;
+    private Double commission;
 }

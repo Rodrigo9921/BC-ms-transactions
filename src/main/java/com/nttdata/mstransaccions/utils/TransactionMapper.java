@@ -14,7 +14,8 @@ public class TransactionMapper {
                 transaction.getProductType(),
                 transaction.getAmount(),
                 transaction.getTransactionType(),
-                transaction.getTransactionDate()
+                transaction.getTransactionDate(),
+                transaction.getCommission()
         );
     }
 
@@ -26,7 +27,8 @@ public class TransactionMapper {
                 transactionDto.getProductType(),
                 transactionDto.getAmount(),
                 transactionDto.getTransactionType(),
-                transactionDto.getTransactionDate()
+                transactionDto.getTransactionDate(),
+                transactionDto.getCommission()
         );
     }
 }

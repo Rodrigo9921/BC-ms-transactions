@@ -21,4 +21,5 @@ public class Transaction {
     private Double amount;
     private String transactionType; // This can be "Deposit", "Withdrawal", "Payment", "Charge"
     private LocalDateTime transactionDate;
+    private Double commission;
 }
