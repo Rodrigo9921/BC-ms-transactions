@@ -118,8 +118,13 @@ public class TransactionServiceImpl implements TransactionService {
                             });
                 });
     }
-
-
+    @Override
+    public Mono<Boolean> hasOverdueDebts(String clientId) {
+        LocalDateTime nowMinusGracePeriod = LocalDateTime.now().minusDays(30); // 30 days grace period
+        return transactionRepository.findByClientId(clientId)
+                .filter(transaction -> transaction.getTransactionType().equals("Charge") && transaction.getTransactionDate().isBefore(nowMinusGracePeriod))
+                .hasElements();
+    }
 
 }
 

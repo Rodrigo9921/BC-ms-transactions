@@ -54,6 +54,11 @@ public class TransactionController {
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
-
+    @GetMapping("/overdue/{clientId}")
+    public Mono<ResponseEntity<Boolean>> hasOverdueDebts(@PathVariable String clientId) {
+        return transactionService.hasOverdueDebts(clientId)
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
 }
 
