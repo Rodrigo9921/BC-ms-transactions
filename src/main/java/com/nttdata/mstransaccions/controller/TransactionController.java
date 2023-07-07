@@ -1,6 +1,7 @@
 package com.nttdata.mstransaccions.controller;
 
 import com.nttdata.mstransaccions.dto.TransactionDto;
+import com.nttdata.mstransaccions.dto.TransferDto;
 import com.nttdata.mstransaccions.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,8 +43,14 @@ public class TransactionController {
     }
 
     @PostMapping("/{clientId}/activeProducts/{productId}/payment")
-    public Mono<ResponseEntity<TransactionDto>> makePaymentTransaction(@PathVariable String clientId, @PathVariable String productId, @RequestBody Double amount) {
-        return transactionService.createPaymentTransaction(clientId, productId, amount)
+    public Mono<ResponseEntity<TransactionDto>> makePayment(@PathVariable String clientId, @PathVariable String productId, @RequestBody Double amount) {
+        return transactionService.makePayment(clientId, productId, amount)
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+    @PostMapping("/transfer")
+    public Mono<ResponseEntity<TransactionDto>> transfer(@RequestBody TransferDto transferDto) {
+        return transactionService.transfer(transferDto.getSourceClientId(), transferDto.getSourceProductId(), transferDto.getTargetClientId(), transferDto.getTargetProductId(), transferDto.getAmount())
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
