@@ -4,6 +4,7 @@ import com.nttdata.mstransaccions.dto.TransactionDto;
 import com.nttdata.mstransaccions.dto.TransferDto;
 import com.nttdata.mstransaccions.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -27,7 +28,7 @@ public class TransactionController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    @GetMapping
+    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<TransactionDto> getAllTransactions() {
         return transactionService.getAllTransactions();
     }

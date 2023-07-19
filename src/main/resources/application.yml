@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: micro-ms-transaccions
+  config:
+    import: optional:configserver:http://localhost:8888
+  cloud:
+    config:
+      import-check:
+        enabled: true
+      enabled: true
+      label: main

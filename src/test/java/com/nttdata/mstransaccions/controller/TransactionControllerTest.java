@@ -35,7 +35,6 @@ class TransactionControllerTest {
         // Act & Assert
         webTestClient.get()
                 .uri("/transactions")
-                .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk()
                 .expectBodyList(TransactionDto.class).hasSize(1).contains(transactionDto);
